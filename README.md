@@ -3,7 +3,7 @@
 NodeJs version v22.6.0. Use NVM tocontrol the node Versions if you need. Please, use an stable and one that llow to 
 work with current technologies. All check the docs.
 
-#Client-App
+#Client-App (https://github.com/chesstabbako/client-app)
 
 Created using Reactjs, Redux/ Toolkit to manage the states.
 

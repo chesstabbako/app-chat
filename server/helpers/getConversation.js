@@ -2,11 +2,7 @@ const { ConversationModel } = require("../models/ConversationModel")
 
 const getConversation = async(currentUserId)=>{
     if(currentUserId){
-        const currentUserConversation = await ConversationModel.find({
-            "$or" : [
-                { sender : currentUserId },
-            ]
-        }).sort({  updatedAt : -1 }).populate('messages').populate('sender')
+        const currentUserConversation = await ConversationModel.find().sort({  updatedAt : -1 }).populate('messages').populate('sender')
 
         const conversation = currentUserConversation.map((conv)=>{
             const countUnseenMsg = conv?.messages?.reduce((preve,curr) => {
@@ -24,7 +20,8 @@ const getConversation = async(currentUserId)=>{
                 _id : conv?._id,
                 sender : conv?.sender,
                 unseenMsg : countUnseenMsg,
-                lastMsg : conv.messages[conv?.messages?.length - 1]
+                lastMsg : conv.messages[conv?.messages?.length - 1], 
+                allMsgs: conv.messages
             }
         })
 

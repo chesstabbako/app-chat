@@ -78,7 +78,6 @@ io.on('connection',async(socket)=>{
         if(!conversation){
             const createConversation = await ConversationModel({
                 sender : data?.sender,
-                receiver : data?.receiver
             })
             conversation = await createConversation.save()
         }
@@ -103,7 +102,7 @@ io.on('connection',async(socket)=>{
         io.to(data?.sender).emit('message',getConversationMessage?.messages || [])
 
         //send conversation
-        const conversationSender = await getConversation(data?.sender)
+        const conversationSender = await getConversation({})
 
         io.to(data?.sender).emit('conversation',conversationSender)
     })
